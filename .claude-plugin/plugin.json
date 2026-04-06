@@ -1,0 +1,32 @@
+{
+  "name": "friday",
+  "description": "F.R.I.D.A.Y — Your AI-powered Product Management Operating System. 37+ skills covering every PM workflow: PRDs, strategy, prioritization, growth frameworks, user research, experimentation, storytelling, and more.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Maor Kuriel",
+    "url": "https://github.com/maorkuriel"
+  },
+  "homepage": "https://github.com/maorkuriel/friday",
+  "repository": "https://github.com/maorkuriel/friday",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "pm",
+    "prd",
+    "roadmap",
+    "prioritization",
+    "stakeholder-updates",
+    "competitive-intel",
+    "launch-planning",
+    "decision-log",
+    "product-ops",
+    "okr",
+    "sprint-planning",
+    "user-research",
+    "product-strategy",
+    "growth",
+    "experimentation",
+    "retention",
+    "friday"
+  ]
+}
