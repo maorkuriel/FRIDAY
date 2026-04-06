@@ -1,0 +1,19 @@
+{
+  "name": "friday-marketplace",
+  "owner": {
+    "name": "Maor Kuriel",
+    "url": "https://github.com/maorkuriel"
+  },
+  "plugins": [
+    {
+      "name": "friday",
+      "description": "F.R.I.D.A.Y — AI-powered PM OS with 37+ skills for strategy, PRDs, growth, experimentation, user research, and more.",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/maorkuriel/friday.git"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/maorkuriel/friday"
+    }
+  ]
+}
