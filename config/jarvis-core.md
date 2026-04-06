@@ -93,40 +93,9 @@ When user asks about something not in cache:
 - User says "refresh cache for [doc]" → re-fetch and cache
 - User updates `.jarvis.md` → new docs auto-cached next session
 
-## MCP Integrations
+## Integrations
 
-Jarvis uses these MCP servers. **Configure them globally** in `~/.claude/settings.json` (not per-project) so they work in any directory:
-
-```json
-{
-  "mcpServers": {
-    "google-drive": {
-      "type": "http",
-      "url": "https://api.anthropic.com/mcp/gdrive/mcp"
-    },
-    "gmail": {
-      "type": "http",
-      "url": "https://gmail.mcp.claude.com/mcp"
-    },
-    "notion": {
-      "type": "http",
-      "url": "https://mcp.notion.com/mcp"
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@executeautomation/playwright-mcp-server"]
-    }
-  }
-}
-```
-
-**Capabilities:**
-- **Notion** - Search workspace, fetch/update pages
-- **Google Drive** - Fetch files, search documents
-- **Gmail** - Search emails, read threads
-- **Playwright** - Browser automation, screenshots, web scraping
-
-**Troubleshooting:** If MCP tools don't appear after config, restart Claude Code. Verify with `/mcp`.
+F.R.I.D.A.Y works with external tools configured separately in your Claude Code settings. Refer to your organisation's Claude Code setup guide for integration configuration.
 
 ## Subagents
 Available specialists:

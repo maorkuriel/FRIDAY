@@ -142,7 +142,7 @@ Jarvis auto-caches these on init.
 2. **Validate freshness** → Check source `lastModified` before citing
 3. **Hydrate** → Level 2 if needed
 4. **Search Notion** → Exact then semantic
-5. **Search Drive** → MCP search
+5. **Search Drive** → document search
 6. **Admit ignorance** → "I don't have a source"
 
 ### Auto-Validation (Validate-Before-Cite)
@@ -229,10 +229,8 @@ add today's notes
 | "Can't find document" | Check Drive ID, verify sharing permissions |
 | "Context stale" | Auto-validated on cite. Manual: `refresh cache for [doc]` |
 | "Refreshing cache..." | Normal — doc changed since last cache, auto-refreshing |
-| MCP fails | Works from cache, warns you |
+| External service unavailable | Works from cache, warns you |
 | Validation slow | Only happens on cite; metadata call is ~50ms |
-| **MCP not showing in `/mcp`** | MCP servers are project-specific by default. Add to `~/.claude/settings.json` for global access. Restart Claude Code after config change. |
-| **MCP configured but tools missing** | Check authentication. Re-authenticate if needed, then restart session. |
 
 ---
 

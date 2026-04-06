@@ -167,35 +167,6 @@ Me: Have a sub-agent analyze this 100KB spec and summarize key points.
 
 ---
 
-## MCP Integration Issues
-
-### Notion/Drive/Gmail not working
-
-**Problem:** Jarvis can't access external services.
-
-**Note:** MCP integrations are optional and configured separately from Jarvis.
-
-**Check MCP status:**
-```
-Me: What MCP servers are connected?
-```
-
-**Fix:** See [Claude Code MCP documentation](https://docs.anthropic.com/claude-code/mcp) for setup instructions.
-
-### "MCP connection failed" errors
-
-**Problem:** Previously working MCP stops responding.
-
-**Causes:**
-1. Auth token expired
-2. MCP server crashed
-3. Network issues
-
-**Fix:**
-1. Restart Claude Code
-2. Re-authenticate the MCP connection
-3. Check MCP server logs
-
 ---
 
 ## Profile Issues
