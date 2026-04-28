@@ -11,7 +11,9 @@
 
 **First Responder Intelligence for Driving Ambitious Yearly-goals**
 
-A Claude Code plugin that turns your terminal into a complete AI-powered product management operating system. **51 skills** covering every PM workflow — from strategy to execution, from PRDs to presentations, from user research to team hiring.
+The ultimate AI-powered product management operating system, built as a [Claude Code](https://claude.ai/code) plugin. **39 PM skills** covering the full product lifecycle — from customer discovery to strategy, from PRDs to retrospectives, from career growth to capacity planning.
+
+> **Live at:** [maorkuriel.github.io/FRIDAY](https://maorkuriel.github.io/FRIDAY)
 
 ---
 
@@ -43,7 +45,7 @@ Just click your answers — no typing needed. F.R.I.D.A.Y uses your profile to r
 /pm-setup
 ```
 
-Drop your company URL and F.R.I.D.A.Y researches everything. Takes 3 minutes. Creates a persistent `knowledge/` directory that every skill reads from and writes to.
+Drop your company URL and F.R.I.D.A.Y researches everything. Takes 3 minutes. Creates a persistent `knowledge/` directory that every skill reads from and writes to — compounding your context over time.
 
 ### Start Working
 
@@ -56,6 +58,8 @@ Drop your company URL and F.R.I.D.A.Y researches everything. Takes 3 minutes. Cr
 /growth-frameworks                  # Build a growth model
 /finding-pmf                        # Assess product-market fit
 /create-slide-deck quarterly-review # HTML slide deck
+/capacity-audit                     # Audit where your time is going
+/pm-improvement                     # Build a 30-day skill growth plan
 ```
 
 Or just describe what you need — F.R.I.D.A.Y routes to the right skill automatically.
@@ -64,22 +68,23 @@ Or just describe what you need — F.R.I.D.A.Y routes to the right skill automat
 
 ## What's Inside
 
-### 37 PM Workflow Skills
+### 39 PM Workflow Skills
 
 | Category | Skills |
 |----------|--------|
-| **Core** | friday (gateway), pm-setup, pm-dashboard, pm-briefing |
-| **Discovery** | feedback-synthesis, competitive-intel, opportunity-assessment |
-| **Strategy** | product-strategy, write-strategy, okr-writer, quarterly-plan, finding-pmf |
-| **User Research** | user-research, persona-builder, interview-guide, journey-map |
-| **Define** | write-prd, refine-spec, tech-feasibility |
-| **Plan** | prioritize, roadmap-builder, sprint-scope |
-| **Growth & Retention** | growth-frameworks, retention-engagement |
-| **Deliver** | launch-plan, retro-facilitator, experimentation |
-| **Communicate** | storytelling-influence, status-update, decision-record, meeting-prep |
-| **Measure** | metrics-check, experiment-review |
-| **Present** | create-slide-deck |
-| **Career & Team** | pm-career-growth, team-and-hiring |
+| **Core** | `friday` (gateway), `pm-setup`, `pm-dashboard`, `pm-briefing` |
+| **Discovery** | `feedback-synthesis`, `competitive-intel`, `opportunity-assessment` |
+| **Strategy** | `product-strategy`, `write-strategy`, `okr-writer`, `quarterly-plan`, `finding-pmf` |
+| **User Research** | `user-research`, `persona-builder`, `interview-guide`, `journey-map` |
+| **Define** | `write-prd`, `refine-spec`, `tech-feasibility` |
+| **Plan** | `prioritize`, `roadmap-builder`, `sprint-scope` |
+| **Growth & Retention** | `growth-frameworks`, `retention-engagement` |
+| **Deliver** | `launch-plan`, `retro-facilitator`, `experimentation` |
+| **Communicate** | `storytelling-influence`, `status-update`, `decision-record`, `meeting-prep` |
+| **Measure** | `metrics-check`, `experiment-review` |
+| **Present** | `create-slide-deck` |
+| **Career & Team** | `pm-career-growth`, `team-and-hiring` |
+| **Manage Yourself** | `capacity-audit`, `pm-improvement` |
 
 ### 4 Jarvis-Powered Document Skills
 
@@ -118,209 +123,150 @@ F.R.I.D.A.Y automatically delegates to expert subagents when reviewing documents
 | You Say | F.R.I.D.A.Y Spawns |
 |---------|-------------------|
 | "review PRD" | Engineer + Executive + User Researcher (parallel) |
-| "review PRFAQ" | Executive + Engineer (parallel) |
-| "validate feature" | User Researcher |
-| "review strategy" | Executive + Engineer |
-| "multi-perspective review" | All three (parallel) |
-| "assess prompt" | Prompt Assessor |
-| "devil's advocate on this" | Devil's Advocate |
+| "devil's advocate on this strategy" | Devil's Advocate subagent |
+| "multi-perspective review" | All three perspectives simultaneously |
+| "is this technically feasible?" | Backend Engineer + CTO |
+| "prepare for exec presentation" | Executive + Comms |
 
 ---
 
-## Strategic Depth
+## Skill Highlights
 
-F.R.I.D.A.Y's strategic skills are grounded in named frameworks from real PM thought leaders:
+### `/write-prd` — Guided PRD Creation
+Discovery-based PRD generation. F.R.I.D.A.Y asks the right questions first, then writes a full PRD with Gherkin acceptance criteria, success metrics, and a launch plan. Reads your codebase for technical context if available.
 
-| Skill | Frameworks |
-|-------|-----------|
-| **Product Strategy** | Shreyas Doshi, Gibson Biddle (DHM), Marty Cagan |
-| **Prioritize** | Shreyas Doshi (LNO), Brandon Chu, Shishir Mehrotra (RICE) |
-| **Growth Frameworks** | Brian Balfour, Casey Winters, Sarah Tavel, Sean Ellis |
-| **Finding PMF** | Sean Ellis (40% rule), Mike Maples Jr, Dalton Caldwell |
-| **User Research** | Bob Moesta (JTBD), Teresa Torres, Krithika Shankarraman |
-| **Retention & Engagement** | Gibson Biddle, Naomi Gleit, Patrick Campbell |
-| **Storytelling & Influence** | Nancy Duarte, Andy Raskin, Wes Kao |
-| **Experimentation** | Ronny Kohavi, Gibson Biddle, Eric Ries |
-| **PM Career Growth** | Jackie Bavaro, Ravi Mehta, Julie Zhuo |
-| **Team & Hiring** | Gokul Rajaram, Claire Hughes Johnson, Emily Kramer |
+### `/product-strategy` — Battle-Tested Strategy
+Frameworks from Shreyas Doshi, Gibson Biddle, and Marty Cagan. Builds or critiques a product strategy with explicit bets, positioning, and what you're choosing NOT to do.
 
----
+### `/prioritize` — Ruthless Prioritization
+RICE and ICE scoring with OKR multipliers. Ranks your backlog with rationale. Draws from Shreyas Doshi's LNO framework and Brandon Chu's opportunity sizing.
 
-## The Memory System (3-Layer)
+### `/decision-record` — Full Decision Documentation
+Captures decisions with Type 1/Type 2 classification (Bezos one-way/two-way door model), alternatives considered, rationale, accepted trade-offs, and explicit revisit conditions. Auto-links to related PRDs, strategy docs, and OKRs.
 
-F.R.I.D.A.Y maintains a 3-layer memory that persists across sessions:
+### `/capacity-audit` — Time and Energy Optimization
+Audits how you actually spend your time versus your declared priorities. Identifies energy leaks, misaligned time investments, and produces a weekly calendar template that protects your high-leverage work. Draws from Paul Graham's Maker/Manager schedule and Shreyas Doshi's LNO framework.
 
-```
-memory/
-  user-profile.md          ← Your PM profile (from personalization wizard)
-  learnings.md             ← Patterns and corrections across sessions
-  cross-project.md         ← Company and stakeholder context
-  daily-notes/             ← Session summaries (last 3 days loaded on start)
-  session-log.jsonl        ← Structured event log (decisions, blockers, actions)
+### `/pm-improvement` — 30-Day Skill Growth Plan
+Honest PM competency assessment across customer discovery, strategy, execution, data, influence, and self-management. Identifies your single highest-leverage gap, diagnoses the root cause, and builds a week-by-week 30-day plan with a measurable success signal. Draws from Ravi Mehta, Jackie Bavaro, and Shreyas Doshi.
 
-knowledge/                 ← Product-specific context (per project)
-  pm-context.md            ← Product, team, tools
-  friday-profile.md        ← Your personalization answers
-  [all other knowledge files...]
+### `/pm-briefing` — Daily Operating System
+Reads everything — knowledge files, Jira/Linear sprint status, OKR progress, upcoming launches, open decisions, experiment results — and tells you exactly what matters today and what to focus on first.
 
-cache/                     ← Cached documents (Drive, Notion)
-context/                   ← Project-level analysis outputs
-```
+### `/competitive-intel` — Research to Battlecard in Minutes
+Give F.R.I.D.A.Y a competitor URL or name. It fetches their website, pricing, features, and recent news, then generates a full battlecard with positioning, strengths, weaknesses, and strategic implications.
 
-### What Gets Logged Automatically
+### `/growth-frameworks` — Growth Loop Modeling
+Growth loops, viral coefficients, acquisition channels, and retention analysis. Frameworks from Brian Balfour, Casey Winters, Sarah Tavel, and Sean Ellis.
 
-- Every **decision** made during a session
-- Every **blocker** identified
-- Every **action item** created
-- Every **document fetched** (cached immediately)
-- Session summaries at end of day
+### `/create-slide-deck` — HTML Presentations
+Generates beautiful, self-contained HTML slide decks with keyboard navigation, print support, and brand colors extracted from your website. Runs in any browser with no dependencies.
 
 ---
 
 ## The Knowledge System
 
-Every skill reads from and writes to `knowledge/`:
+F.R.I.D.A.Y stores all product knowledge in `knowledge/`:
 
 ```
 knowledge/
-  pm-context.md       ← Product, team, and tools
-  friday-profile.md   ← Your personalization answers
-  team.md / okrs.md / strategy.md
-  competitors/        ← Battlecards (one per competitor)
-  decisions/          ← Decision records with rationale
-  specs/              ← PRDs and feature specs
-  feedback/           ← Customer feedback syntheses
-  priorities/         ← Feature rankings and scoring
-  roadmap/            ← Quarterly roadmaps
-  sprints/            ← Sprint plans
-  launches/           ← Launch checklists
-  updates/            ← Stakeholder updates
-  meetings/           ← Meeting prep and notes
-  metrics/            ← KPI reviews
-  experiments/        ← A/B test analyses
-  opportunities/      ← Opportunity assessments
-  retros/             ← Retrospectives
-  briefs/             ← Daily briefings
-  personas/           ← User personas
-  research/           ← Interview guides, journey maps
-  feasibility/        ← Technical assessments
-  decks/              ← HTML slide decks
-  growth/             ← Growth models
-  pmf/                ← PMF assessments
+├── pm-context.md       # Product, team, tools, and strategic context
+├── friday-profile.md   # Your personalization answers
+├── strategy.md         # Current product strategy
+├── okrs.md             # Goals and key results
+├── team.md             # Team structure and capacity
+├── competitors/        # Competitive battlecards
+├── decisions/          # Decision records with revisit dates
+├── specs/              # PRDs and product specs
+├── feedback/           # Customer feedback syntheses
+├── priorities/         # Feature rankings and scoring
+├── roadmap/            # Roadmap commitments
+├── sprints/            # Sprint plans and capacity
+├── launches/           # Launch checklists and retrospectives
+├── updates/            # Stakeholder updates
+├── meetings/           # Meeting notes and action items
+├── metrics/            # KPI reviews and anomaly logs
+├── experiments/        # A/B test designs and results
+├── opportunities/      # Opportunity assessments
+├── retros/             # Retrospectives and open actions
+├── briefs/             # Daily briefing history
+├── personas/           # User personas
+├── research/           # User research and interview notes
+├── feasibility/        # Technical feasibility assessments
+├── decks/              # Presentations
+├── growth/             # Growth models and loop analyses
+└── pmf/                # Product-market fit assessments
 ```
+
+Every skill reads from and writes to this directory. The knowledge compounds — your competitive battlecards inform your PRDs, your OKRs inform your prioritization, your retros inform your next sprint scope.
 
 ---
 
-## Standalone Prompts (Any AI Tool)
+## Frameworks and Sources
 
-The `prompts/` folder contains all strategic skill prompts as plain markdown — no Claude Code required:
+F.R.I.D.A.Y grounds its skills in frameworks from the best practitioners in product:
 
-```
-prompts/
-  prioritization.md
-  product-strategy.md
-  growth-frameworks.md
-  finding-product-market-fit.md
-  user-research.md
-  retention-and-engagement.md
-  experimentation.md
-  storytelling-and-influence.md
-  pm-career-growth.md
-  team-and-hiring.md
-```
+**Strategy**: Shreyas Doshi, Gibson Biddle, Marty Cagan, Hamilton Helmer  
+**Growth**: Brian Balfour, Casey Winters, Sarah Tavel, Sean Ellis  
+**User Research**: Bob Moesta (JTBD), Teresa Torres, Krithika Shankarraman  
+**Prioritization**: Shreyas Doshi (LNO), Brandon Chu, Shishir Mehrotra  
+**Communication**: Nancy Duarte, Andy Raskin, Kim Scott, Wes Kao  
+**Experimentation**: Ronny Kohavi, Albert Cheng, Eric Ries  
+**PMF**: Sean Ellis, Rahul Vohra, Mike Maples Jr, Dalton Caldwell  
+**Career**: Ravi Mehta, Jackie Bavaro, Julie Zhuo  
+**Teams**: Gokul Rajaram, Claire Hughes Johnson, Emily Kramer  
+**Retention**: Gibson Biddle, Naomi Gleit  
+**Decisions**: Jeff Bezos (Type 1/Type 2), Jeff Gothelf  
+**Self-Management**: Paul Graham (Maker/Manager), Ericsson (Deliberate Practice)
 
-Paste any of these into ChatGPT, Gemini, or any AI tool.
-
----
-
-## Claude Desktop (Non-CLI Users)
-
-If you use Claude Desktop instead of Claude Code CLI:
-
-```
-claude-desktop/pm-workspace-wizard.skill
-```
-
-Install this `.skill` file in Claude Desktop and say "set up my PM workspace" — it generates 38 files across 25 folders in under 5 minutes.
-
----
-
-## Integrations (Optional)
-
-F.R.I.D.A.Y works out of the box with zero integrations. Install these for live data:
-
-| Integration | What It Unlocks |
-|-------------|----------------|
-| **GitHub** | PR data for status updates and feasibility checks |
-| **Linear / Jira** | Sprint data, backlog, ticket status |
-| **Slack** | Channel messages for feedback synthesis |
-| **Notion** | Doc imports and wiki references |
-| **Confluence** | Enterprise doc imports |
-| **Amplitude / Mixpanel** | Live metrics for KPI reviews and experiment analysis |
-| **Figma** | Design references for PRDs |
-| **Google Drive** | Document caching and context loading |
-
----
-
-## Quick Commands
-
-```
-/friday              → Gateway — routes any request to the right skill
-/pm-setup            → Onboarding wizard
-/write-prd           → Write a PRD
-/product-strategy    → Build a strategy
-/prioritize          → Score your backlog
-/pm-briefing         → Morning briefing
-/launch-plan         → Launch checklist
-/create-slide-deck   → HTML presentation
-/growth-frameworks   → Growth model
-/finding-pmf         → PMF assessment
-/pm-career-growth    → Career growth plan
-/team-and-hiring     → Hiring scorecard
-```
-
----
-
-## Steering Wheel
-
-Adjust F.R.I.D.A.Y's output style on-the-fly:
-
-| Command | Effect |
-|---------|--------|
-| "make it more concrete" | Ground in specifics |
-| "make it bolder" | More decisive |
-| "expand on this" | More depth |
-| "simplify" | Plain language |
-| "be more exploratory" | More options |
-| "lock it in" | Definitive answer |
-| "devil's advocate" | Challenge the recommendation |
+All grounded in real published frameworks — never generic advice.
 
 ---
 
 ## Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI, desktop, or IDE extension)
-- Claude Pro, Team, or Enterprise plan
+- [Claude Code](https://claude.ai/code) (CLI, desktop, or IDE extension)
+- Claude Pro, Team, or Enterprise subscription
+- ~3 minutes for initial setup
 
-## Security
+---
 
-Every skill is a plain markdown file you can read and audit. No compiled code, no obfuscated logic.
+## Installation
 
-## Update
-
-```bash
-claude plugin update friday
-```
-
-## Uninstall
+### Option 1: Plugin Marketplace (Recommended)
 
 ```bash
-claude plugin uninstall friday
-claude plugin marketplace remove friday-marketplace
+claude plugin marketplace add maorkuriel/friday
+claude plugin install friday
 ```
 
-Your `knowledge/` and `memory/` directories are not deleted.
+### Option 2: Manual Install
+
+```bash
+git clone https://github.com/maorkuriel/FRIDAY.git
+cd FRIDAY
+./install.sh
+```
+
+See [GETTING-STARTED.md](GETTING-STARTED.md) for full setup instructions.
+
+---
+
+## Documentation
+
+| Guide | What It Covers |
+|-------|---------------|
+| [GETTING-STARTED.md](GETTING-STARTED.md) | Full setup walkthrough |
+| [docs/QUICK-START.md](docs/QUICK-START.md) | Essential commands reference |
+| [docs/CUSTOMIZATION.md](docs/CUSTOMIZATION.md) | Adding skills, customizing behavior |
+| [docs/SKILL-REGISTRATION.md](docs/SKILL-REGISTRATION.md) | Building your own skills |
+| [docs/JARVIS-GUIDE.md](docs/JARVIS-GUIDE.md) | Jarvis OS deep-dive |
+| [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Common issues and fixes |
+
+---
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
+
+Built by [Maor Kuriel](https://github.com/maorkuriel).

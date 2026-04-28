@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F.R.I.D.A.Y — AI-Powered PM Operating System</title>
+  <meta name="description" content="The ultimate AI-powered product management operating system. 39 PM skills for Claude Code covering the full product lifecycle." />
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface2: #1e1e1e;
+      --border: #2a2a2a;
+      --accent: #7c3aed;
+      --accent2: #a78bfa;
+      --green: #22c55e;
+      --text: #e5e5e5;
+      --muted: #888;
+      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 0.875rem; color: var(--muted); }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .nav-cta:hover { background: #6d28d9; text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+    .ascii {
+      font-family: var(--mono);
+      font-size: clamp(0.4rem, 1.4vw, 0.75rem);
+      line-height: 1.2;
+      color: var(--accent2);
+      white-space: pre;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.4);
+      color: var(--accent2);
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    h1 span { color: var(--accent2); }
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: #6d28d9; text-decoration: none; }
+    .btn-secondary {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9375rem;
+    }
+    .btn-secondary:hover { background: #2a2a2a; text-decoration: none; }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--accent2);
+      font-family: var(--mono);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.8125rem; color: var(--muted); margin-top: 0.25rem; }
+
+    /* SECTIONS */
+    section { max-width: 1000px; margin: 0 auto; padding: 5rem 2rem; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-sub { color: var(--muted); max-width: 560px; margin-bottom: 3rem; }
+
+    /* INSTALL BLOCK */
+    .install-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .install-block pre {
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      color: var(--green);
+      margin: 0.75rem 0;
+      background: var(--bg);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .install-block .comment { color: var(--muted); font-size: 0.8125rem; }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .skill-card:hover {
+      border-color: rgba(124,58,237,0.5);
+      transform: translateY(-2px);
+    }
+    .skill-cmd {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      color: var(--accent2);
+      margin-bottom: 0.5rem;
+    }
+    .skill-name { font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+    .skill-desc { font-size: 0.8125rem; color: var(--muted); }
+    .skill-tag {
+      display: inline-block;
+      background: rgba(124,58,237,0.12);
+      color: var(--accent2);
+      font-size: 0.6875rem;
+      font-family: var(--mono);
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+
+    /* CATEGORY TABS */
+    .cat-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .cat-tab {
+      font-size: 0.8125rem;
+      padding: 0.35rem 0.875rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: var(--mono);
+    }
+    .cat-tab.active, .cat-tab:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* FEATURE ROWS */
+    .features { display: flex; flex-direction: column; gap: 4rem; }
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .feature:nth-child(even) .feature-text { order: 2; }
+    .feature:nth-child(even) .feature-demo { order: 1; }
+    .feature-text h3 { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .feature-text p { color: var(--muted); margin-bottom: 1rem; }
+    .feature-text ul { color: var(--muted); padding-left: 1.25rem; }
+    .feature-text li { margin-bottom: 0.35rem; font-size: 0.9375rem; }
+    .feature-demo {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+    }
+    .demo-line { margin-bottom: 0.4rem; }
+    .demo-cmd { color: var(--green); }
+    .demo-out { color: var(--muted); }
+    .demo-accent { color: var(--accent2); }
+    .demo-prompt { color: #888; }
+
+    /* AGENTS */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .agent-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .agent-icon { font-size: 1.25rem; margin-bottom: 0.4rem; }
+    .agent-name { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; }
+    .agent-role { font-size: 0.75rem; color: var(--muted); }
+
+    /* FRAMEWORKS */
+    .fw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .fw-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .fw-area { font-size: 0.75rem; color: var(--accent2); font-family: var(--mono); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .fw-names { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: var(--muted); max-width: 480px; margin: 0 auto 2rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); }
+
+    @media (max-width: 680px) {
+      .feature { grid-template-columns: 1fr; }
+      .feature:nth-child(even) .feature-text { order: 1; }
+      .feature:nth-child(even) .feature-demo { order: 2; }
+      .stats { gap: 2rem; }
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">F.R.I.D.A.Y</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#agents">Subagents</a>
+    <a href="#install">Install</a>
+  </div>
+  <a href="https://github.com/maorkuriel/FRIDAY" class="nav-cta">View on GitHub →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <pre class="ascii">
+███████╗██████╗ ██╗██████╗  █████╗ ██╗   ██╗
+██╔════╝██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝
+█████╗  ██████╔╝██║██║  ██║███████║ ╚████╔╝
+██╔══╝  ██╔══██╗██║██║  ██║██╔══██║  ╚██╔╝
+██║     ██║  ██║██║██████╔╝██║  ██║   ██║
+╚═╝     ╚═╝  ╚═╝╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝  </pre>
+  <div class="badge">Claude Code Plugin · MIT License</div>
+  <h1>The <span>AI operating system</span><br>for product managers</h1>
+  <p class="hero-sub">39 PM skills. 14 expert subagents. A knowledge base that compounds. Built for Claude Code — works in your terminal, IDE, and desktop.</p>
+  <div class="hero-actions">
+    <a href="#install" class="btn-primary">Get Started Free</a>
+    <a href="https://github.com/maorkuriel/FRIDAY" class="btn-secondary">View on GitHub</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">39</div>
+    <div class="stat-label">PM workflow skills</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">14</div>
+    <div class="stat-label">Expert subagents</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3min</div>
+    <div class="stat-label">Setup time</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Context that compounds</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-label">How It Works</div>
+  <h2>Your PM workflow, fully automated</h2>
+  <p class="section-sub">F.R.I.D.A.Y reads your product context, routes your requests to the right skill, and writes everything to a knowledge base that gets smarter with every use.</p>
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="feature-text">
+        <h3>Start with context, not templates</h3>
+        <p>Set up your knowledge base once. Every skill reads from it automatically — your OKRs shape your prioritization, your strategy informs your PRDs, your retros feed your next sprint.</p>
+        <ul>
+          <li>6-question personalization wizard</li>
+          <li>Auto-researches your company from a URL</li>
+          <li>21+ knowledge directories that compound over time</li>
+        </ul>
+      </div>
+      <div class="feature-demo">
+        <div class="demo-line"><span class="demo-cmd">$ /pm-setup</span></div>
+        <div class="demo-line"><span class="demo-out">→ Reading company context...</span></div>
+        <div class="demo-line"><span class="demo-out">→ Setting up knowledge base...</span></div>
+        <div class="demo-line"><span class="demo-accent">✓ pm-context.md created</span></div>
+        <div class="demo-line"><span class="demo-accent">✓ okrs.md created</span></div>
+        <div class="demo-line"><span class="demo-accent">✓ team.md created</span></div>
+        <div class="demo-line demo-prompt" style="margin-top:0.75rem">F.R.I.D.A.Y ✓ Ready — Snyk Platform</div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-text">
+        <h3>Multi-agent document review</h3>
+        <p>Ask F.R.I.D.A.Y to review your PRD and three expert subagents fire simultaneously — an engineer, an executive, and a user researcher — each with a risk-rated critique.</p>
+        <ul>
+          <li>Parallel reviews in seconds</li>
+          <li>Each subagent has a distinct lens and priority</li>
+          <li>No more "looks good to me" without substance</li>
+        </ul>
+      </div>
+      <div class="feature-demo">
+        <div class="demo-line"><span class="demo-cmd">$ review this PRD</span></div>
+        <div class="demo-line"><span class="demo-out">Spawning 3 subagents...</span></div>
+        <div class="demo-line" style="margin-top:0.5rem"><span class="demo-accent">🔧 Backend Engineer</span></div>
+        <div class="demo-line"><span class="demo-out">  Risk: API rate limits not addressed</span></div>
+        <div class="demo-line" style="margin-top:0.25rem"><span class="demo-accent">📊 Executive</span></div>
+        <div class="demo-line"><span class="demo-out">  Risk: Success metric lacks baseline</span></div>
+        <div class="demo-line" style="margin-top:0.25rem"><span class="demo-accent">👤 User Researcher</span></div>
+        <div class="demo-line"><span class="demo-out">  Risk: 0 user validation cited</span></div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-text">
+        <h3>Intelligent routing</h3>
+        <p>You don't need to remember 39 commands. Describe what you need in plain language — F.R.I.D.A.Y routes to the right skill, reads the right files, and delivers output in your voice.</p>
+        <ul>
+          <li>"prep me for my exec meeting" → <code>/meeting-prep</code></li>
+          <li>"customers are churning" → <code>/retention-engagement</code></li>
+          <li>"should we build X?" → <code>/opportunity-assessment</code></li>
+        </ul>
+      </div>
+      <div class="feature-demo">
+        <div class="demo-line"><span class="demo-cmd">$ our churn is up this quarter</span></div>
+        <div class="demo-line"><span class="demo-out">→ Routing to retention-engagement</span></div>
+        <div class="demo-line"><span class="demo-out">→ Reading metrics/...</span></div>
+        <div class="demo-line"><span class="demo-out">→ Reading okrs.md...</span></div>
+        <div class="demo-line" style="margin-top:0.5rem"><span class="demo-accent">Diagnosis: Day-7 retention dropped</span></div>
+        <div class="demo-line"><span class="demo-accent">from 62% → 54% since the redesign.</span></div>
+        <div class="demo-line" style="margin-top:0.25rem"><span class="demo-out">Recommended: onboarding audit</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background: var(--surface); border-radius: 16px; max-width: 100%; padding: 5rem 2rem;">
+  <div style="max-width:1000px; margin:0 auto;">
+    <div class="section-label">Skills</div>
+    <h2>39 skills covering the full PM lifecycle</h2>
+    <p class="section-sub">From customer discovery to strategy, from PRDs to presentations, from career growth to capacity planning.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cmd">/friday</div>
+        <div class="skill-name">Gateway & Router</div>
+        <div class="skill-desc">Understands your intent and routes to the right skill automatically.</div>
+        <span class="skill-tag">Core</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/pm-briefing</div>
+        <div class="skill-name">Daily PM Briefing</div>
+        <div class="skill-desc">Reads everything — Jira, OKRs, launches, decisions — and tells you what matters today.</div>
+        <span class="skill-tag">Core</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/write-prd</div>
+        <div class="skill-name">PRD Creation</div>
+        <div class="skill-desc">Discovery-based PRD with Gherkin acceptance criteria, success metrics, and launch plan.</div>
+        <span class="skill-tag">Define</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/product-strategy</div>
+        <div class="skill-name">Product Strategy</div>
+        <div class="skill-desc">Shreyas Doshi + Gibson Biddle + Marty Cagan. Vision, bets, and what NOT to build.</div>
+        <span class="skill-tag">Strategy</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/prioritize</div>
+        <div class="skill-name">Ruthless Prioritization</div>
+        <div class="skill-desc">RICE/ICE scoring with OKR multipliers. Ranked backlog with rationale.</div>
+        <span class="skill-tag">Plan</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/user-research</div>
+        <div class="skill-name">User Research</div>
+        <div class="skill-desc">Bob Moesta JTBD + Teresa Torres continuous discovery. Interview design and synthesis.</div>
+        <span class="skill-tag">Research</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/competitive-intel</div>
+        <div class="skill-name">Competitive Intel</div>
+        <div class="skill-desc">Research a competitor URL → full battlecard with positioning and strategic implications.</div>
+        <span class="skill-tag">Discovery</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/growth-frameworks</div>
+        <div class="skill-name">Growth Frameworks</div>
+        <div class="skill-desc">Brian Balfour + Casey Winters. Growth loops, acquisition channels, viral coefficients.</div>
+        <span class="skill-tag">Growth</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/decision-record</div>
+        <div class="skill-name">Decision Record</div>
+        <div class="skill-desc">Type 1/Type 2 classification, alternatives, rationale, trade-offs, and revisit conditions.</div>
+        <span class="skill-tag">Communicate</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/capacity-audit</div>
+        <div class="skill-name">Capacity Audit</div>
+        <div class="skill-desc">Time and energy audit. Identify leaks, protect maker blocks, rebalance your week.</div>
+        <span class="skill-tag">Manage Yourself</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/pm-improvement</div>
+        <div class="skill-name">PM Skill Growth</div>
+        <div class="skill-desc">Competency assessment across 6 domains → 30-day plan for your single highest-leverage gap.</div>
+        <span class="skill-tag">Manage Yourself</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/finding-pmf</div>
+        <div class="skill-name">PMF Assessment</div>
+        <div class="skill-desc">Sean Ellis test + Mike Maples Jr + Rahul Vohra. Are you there? What's missing?</div>
+        <span class="skill-tag">Strategy</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/create-slide-deck</div>
+        <div class="skill-name">Slide Deck</div>
+        <div class="skill-desc">Self-contained HTML presentation with keyboard navigation and your brand colors.</div>
+        <span class="skill-tag">Present</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/quarterly-plan</div>
+        <div class="skill-name">Quarterly Plan</div>
+        <div class="skill-desc">Full quarter: OKRs, roadmap, capacity, resource allocation, and risk assessment.</div>
+        <span class="skill-tag">Strategy</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/experiment-review</div>
+        <div class="skill-name">Experiment Review</div>
+        <div class="skill-desc">Ronny Kohavi statistical rigor. Ship / kill / extend recommendation with segment analysis.</div>
+        <span class="skill-tag">Measure</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cmd">/pm-career-growth</div>
+        <div class="skill-name">Career Growth</div>
+        <div class="skill-desc">Ravi Mehta + Jackie Bavaro + Julie Zhuo. IC vs manager, leveling up, strategic influence.</div>
+        <span class="skill-tag">Career</span>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:2rem; color: var(--muted); font-size:0.875rem;">
+      + 23 more skills: <a href="https://github.com/maorkuriel/FRIDAY#whats-inside">see full list on GitHub →</a>
+    </p>
+  </div>
+</section>
+
+<!-- AGENTS -->
+<section id="agents">
+  <div class="section-label">Subagents</div>
+  <h2>14 expert subagents, auto-delegated</h2>
+  <p class="section-sub">When you ask F.R.I.D.A.Y to review a document, it spawns specialist subagents in parallel — each with a distinct lens, a distinct priority, and a risk-rated critique.</p>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-icon">⚙️</div>
+      <div class="agent-name">Backend Engineer</div>
+      <div class="agent-role">API design, data models, technical feasibility</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">🖥️</div>
+      <div class="agent-name">Frontend Engineer</div>
+      <div class="agent-role">UI complexity, component reuse, performance</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">🏛️</div>
+      <div class="agent-name">CTO</div>
+      <div class="agent-role">Architecture, tech debt, scalability risks</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">📊</div>
+      <div class="agent-name">Executive</div>
+      <div class="agent-role">Strategic alignment, business impact, stakeholder clarity</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">👤</div>
+      <div class="agent-name">User Researcher</div>
+      <div class="agent-role">User value, adoption risk, validation gaps</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">🎨</div>
+      <div class="agent-name">UX Designer</div>
+      <div class="agent-role">IA, accessibility, design system consistency</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">📈</div>
+      <div class="agent-name">Data Analyst</div>
+      <div class="agent-role">Metrics definition, experiment design, SQL logic</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">🔧</div>
+      <div class="agent-name">Data Engineer</div>
+      <div class="agent-role">Pipeline feasibility, schema design, data contracts</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">📣</div>
+      <div class="agent-name">Marketer</div>
+      <div class="agent-role">Positioning, messaging, launch strategy</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">✍️</div>
+      <div class="agent-name">Comms</div>
+      <div class="agent-role">Narrative clarity and communication structure</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">😈</div>
+      <div class="agent-name">Devil's Advocate</div>
+      <div class="agent-role">Pre-mortem, failure modes, contrarian analysis</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">🤖</div>
+      <div class="agent-name">Prompt Assessor</div>
+      <div class="agent-role">AI prompt quality and risk quantification</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">📚</div>
+      <div class="agent-name">Research Papers</div>
+      <div class="agent-role">Academic grounding for product decisions</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-icon">🚀</div>
+      <div class="agent-name">DevOps</div>
+      <div class="agent-role">Infrastructure, deployment, reliability</div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORKS -->
+<section>
+  <div class="section-label">Frameworks</div>
+  <h2>Grounded in the best practitioners in product</h2>
+  <p class="section-sub">Not generic advice. Every skill cites specific frameworks from published PM leaders — so you know why F.R.I.D.A.Y recommends what it recommends.</p>
+
+  <div class="fw-grid">
+    <div class="fw-card">
+      <div class="fw-area">Strategy</div>
+      <div class="fw-names">Shreyas Doshi · Gibson Biddle · Marty Cagan · Hamilton Helmer</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">Growth</div>
+      <div class="fw-names">Brian Balfour · Casey Winters · Sarah Tavel · Sean Ellis</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">User Research</div>
+      <div class="fw-names">Bob Moesta (JTBD) · Teresa Torres · Krithika Shankarraman</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">Prioritization</div>
+      <div class="fw-names">Shreyas Doshi (LNO) · Brandon Chu · Shishir Mehrotra</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">Communication</div>
+      <div class="fw-names">Nancy Duarte · Andy Raskin · Kim Scott · Wes Kao</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">Experimentation</div>
+      <div class="fw-names">Ronny Kohavi · Albert Cheng · Eric Ries</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">PMF</div>
+      <div class="fw-names">Sean Ellis · Rahul Vohra · Mike Maples Jr · Dalton Caldwell</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">Career & Teams</div>
+      <div class="fw-names">Ravi Mehta · Jackie Bavaro · Julie Zhuo · Gokul Rajaram</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">Decisions</div>
+      <div class="fw-names">Jeff Bezos (Type 1/Type 2) · Jeff Gothelf</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-area">Self-Management</div>
+      <div class="fw-names">Paul Graham (Maker/Manager) · Ericsson (Deliberate Practice)</div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section id="install">
+  <div class="section-label">Install</div>
+  <h2>Up and running in 3 minutes</h2>
+  <p class="section-sub">Requires <a href="https://claude.ai/code">Claude Code</a> and a Claude Pro, Team, or Enterprise subscription.</p>
+
+  <div class="install-block">
+    <div class="comment"># Option 1: Plugin marketplace (recommended)</div>
+    <pre>claude plugin marketplace add maorkuriel/friday
+claude plugin install friday</pre>
+
+    <div class="comment" style="margin-top:1.25rem"># Option 2: Manual install</div>
+    <pre>git clone https://github.com/maorkuriel/FRIDAY.git
+cd FRIDAY && ./install.sh</pre>
+
+    <div class="comment" style="margin-top:1.25rem"># Then set up your knowledge base</div>
+    <pre>/pm-setup</pre>
+
+    <div class="comment" style="margin-top:1.25rem"># Start working</div>
+    <pre>/friday</pre>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-label">Open Source · MIT License</div>
+  <h2>Start building with F.R.I.D.A.Y</h2>
+  <p>Free to use, free to extend. Every skill is a plain markdown file you can read, fork, and customize.</p>
+  <div class="hero-actions">
+    <a href="https://github.com/maorkuriel/FRIDAY" class="btn-primary">View on GitHub</a>
+    <a href="https://github.com/maorkuriel/FRIDAY/blob/main/GETTING-STARTED.md" class="btn-secondary">Read the Docs</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <a href="https://github.com/maorkuriel">Maor Kuriel</a> · MIT License · <a href="https://github.com/maorkuriel/FRIDAY">GitHub</a></p>
+</footer>
+
+</body>
+</html>

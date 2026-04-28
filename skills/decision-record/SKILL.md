@@ -25,13 +25,27 @@ Ask:
 
 Push for precision. "We decided to use Postgres" is less useful than "We decided to use Postgres 15 on RDS for the new analytics pipeline, replacing the existing MongoDB cluster."
 
-### Step 2: Context and Problem Statement
+### Step 2: Decision Type — Type 1 or Type 2
+
+Before capturing context, classify the decision:
+
+> Is this a **Type 1** (one-way door) or **Type 2** (two-way door) decision?
+>
+> - **Type 1 — One-way door**: Hard or expensive to reverse. Commits the team to a path that is difficult or costly to undo. Requires more deliberation, broader input, and careful documentation. Examples: major architecture choices, pricing model changes, sunsetting a product.
+>
+> - **Type 2 — Two-way door**: Reversible with reasonable effort. Can be made quickly and adjusted if wrong. Most product decisions are Type 2. Examples: feature flags, design choices, experiment configurations, sprint scope.
+
+Record the type in the decision document. Type 1 decisions warrant the full documentation process. Type 2 decisions can be documented more lightly, but still deserve a record of the reasoning.
+
+If the user is unsure, probe: "If this turns out to be wrong, how hard is it to undo? What's the cost of reversal?"
+
+### Step 3: Context and Problem Statement
 
 Ask:
 
 > What problem or question prompted this decision? What was the situation that required a choice?
 
-### Step 3: Alternatives Considered
+### Step 4: Alternatives Considered
 
 Ask:
 
@@ -46,7 +60,7 @@ For each alternative, capture:
 If the user mentions only one or two alternatives, probe:
 > Were there other options discussed, even briefly? Sometimes the "obvious" rejected options are worth documenting too.
 
-### Step 4: Rationale
+### Step 5: Rationale
 
 Ask:
 
@@ -56,7 +70,7 @@ Ask:
 > - What constraints shaped the decision? (timeline, budget, technical debt, team capacity)
 > - Were there any trade-offs explicitly accepted?
 
-### Step 5: Revisit Conditions
+### Step 6: Revisit Conditions
 
 Ask:
 
@@ -68,7 +82,7 @@ Examples to prompt with:
 - Market changes (e.g., "if competitor X launches a similar feature")
 - Technology changes (e.g., "if the vendor changes pricing")
 
-### Step 6: Impact and Dependencies
+### Step 7: Impact and Dependencies
 
 Ask:
 
@@ -104,6 +118,7 @@ Structure:
 | Field | Value |
 |---|---|
 | Date | [YYYY-MM-DD] |
+| Type | [Type 1 — One-way door / Type 2 — Two-way door] |
 | Status | [Decided / Superseded / Under Review] |
 | Deciders | [Names and roles] |
 | Revisit By | [Date or condition] |
